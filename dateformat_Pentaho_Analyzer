@@ -1,0 +1,45 @@
+<Schema name="Rodrigo"> 
+  
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Data de Nascimento">
+    <Hierarchy visible="true" hasAll="true" allMemberName="Tudo" primaryKey="pk_tempo">
+      <Table name="dim_tempo" schema="" alias="data_nascimento">
+      </Table>
+	  
+      <Level name="Ano Nascimento" visible="true" column="nu_ano" type="Integer" uniqueMembers="true" levelType="TimeYears" 
+			 hideMemberIf="Never">
+		<Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+	  
+      <Level name="Mes Nascimento" visible="true" column="nu_mes" type="String" uniqueMembers="false" levelType="TimeMonths" 
+			 hideMemberIf="Never" caption="M&#234;s Nascimento" ordinalColumn="nu_mes" captionColumn="no_mes">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+	  
+      <Level name="Dia Nascimento" visible="true" column="nu_dia" type="Integer" uniqueMembers="false" levelType="TimeDays" 
+			 hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M].[dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  
+  <Cube name="Pessoas" visible="true" cache="true" enabled="true">
+    <Table name="tf_pessoas" schema="">
+    </Table>
+    <DimensionUsage source="Data de Nascimento" name="Data de Nascimento" visible="true" foreignKey="fk_dt_nascimento" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Quantidade de Pessoas" column="pk_pessoas" datatype="Numeric" formatString="#,##0" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
