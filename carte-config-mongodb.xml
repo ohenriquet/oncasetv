@@ -1,0 +1,14 @@
+<slave_config>  
+  <slaveserver>    
+    <name>Rodrigo</name>    
+    <hostname>localhost</hostname>    
+    <port>8083</port>    
+  </slaveserver> 
+  <services>  
+    <service>    
+      <name>MongoVirtual</name>     
+      <filename>D:\OncaseTV\mongodb-data-service.ktr</filename>     
+      <service_step>Output</service_step>   
+    </service>
+  </services>
+</slave_config>
