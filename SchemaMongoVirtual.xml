@@ -1,0 +1,32 @@
+<Schema name="SchemaMongoVirtual">
+  <Cube name="CuboMongoVirtual" visible="true" cache="true" enabled="true">
+    <Table name="MongoVirtual" schema="Kettle">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" name="Titulo">
+      <Hierarchy visible="true" hasAll="true" allMemberName="Todos">
+        <Level name="Titulo" visible="true" column="title" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Ano">
+      <Hierarchy visible="true" hasAll="true" allMemberName="Todos">
+        <Level name="Ano" visible="true" column="year" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Duracao">
+      <Hierarchy visible="true" hasAll="true" allMemberName="Tudo">
+        <Level name="Duracao" visible="true" column="runtime" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+	<Dimension type="StandardDimension" visible="true" name="Nota">
+      <Hierarchy visible="true" hasAll="true" allMemberName="Tudo">
+        <Level name="Nota" visible="true" column="imdbRating" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Quantidade de Filmes" column="imdbId" datatype="Numeric" formatString="#,##0" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
